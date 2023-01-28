@@ -5,6 +5,9 @@ userNameField = '[data-test="username"]';
 passwordField = '[data-test="password"]';
 loginBtn = '[data-test="login-button"]';
 
+lockedOutUserError = '[data-test="error"]';
+lockedOutUserErrorExpectedtext = 'Epic sadface: Sorry, this user has been locked out.';
+
 
 
 assertLoginPageLogo(){
@@ -41,8 +44,13 @@ cy.get(this.loginBtn).click();
 
 }
 
+assertLockedOutUserLoginError(){
 
+cy.get(this.lockedOutUserError).should('be.visible');
+cy.get(this.lockedOutUserError).should('have.text', this.lockedOutUserErrorExpectedtext);
+cy.get(this.lockedOutUserError).should('include.html', '<button class="error-button">');
 
+}
 
 
 

@@ -1,6 +1,7 @@
 const { defineConfig } = require("cypress");
 
 module.exports = defineConfig({
+  projectId: 'vwubsx',
   watchForFileChanges: false,
   e2e: {
     setupNodeEvents(on, config) {

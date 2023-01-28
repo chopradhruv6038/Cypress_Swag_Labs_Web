@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dashboard": "npx cypress run -b firefox --headed --record --key 33445e7d-b031-4206-96e5-ecf5f4c6b96d"
   },
   "keywords": [],
   "author": "",
