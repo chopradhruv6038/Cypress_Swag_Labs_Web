@@ -18,7 +18,7 @@ describe('This suite will test all the Login Test cases', ()=> {
 
 beforeEach('Before Each block for loading URL and setting Viewport', ()=> {
 
-basepage.loadUrl('/');
+basepage.loadUrl('');
 basepage.setViewPortTo1280X720();
 
 
@@ -35,7 +35,7 @@ cy.readFile('cypress/fixtures/LoginUsersData.json').then((res)=> {
 
 })
 
-it('Login Test for locked out user', ()=> {
+it.only('Login Test for locked out user', ()=> {
 
   loginpage.assertLoginPageLogo();
 
@@ -43,11 +43,8 @@ it('Login Test for locked out user', ()=> {
   loginpage.enterPassword(userLoginDetails.validPassword);
   
   loginpage.clickLoginBtn();
-
-
-
-
-
+  
+  loginpage.assertLockedOutUserLoginError();
 
 })
 
