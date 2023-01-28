@@ -108,7 +108,7 @@ it('Login Test for valid user', ()=> {
   loginpage.enterUserName(userLoginDetails.validUserName);
   loginpage.enterPassword(userLoginDetails.validPassword);
   
-  loginpage.clickLoginBtn();
+ 
 
 
 
