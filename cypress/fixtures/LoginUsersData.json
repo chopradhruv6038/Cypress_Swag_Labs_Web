@@ -1,0 +1,11 @@
+{
+
+"validUserName" : "standard_user",
+"validPassword" : "secret_sauce",
+"lockedOutUserName" : "locked_out_user",
+"problemUserName" : "problem_user",
+"PerformanceGlitchUserName" : "performance_glitch_user",
+"invalidPassword" : "invalid"
+
+
+}
