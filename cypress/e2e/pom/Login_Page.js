@@ -8,6 +8,8 @@ loginBtn = '[data-test="login-button"]';
 lockedOutUserError = '[data-test="error"]';
 lockedOutUserErrorExpectedtext = 'Epic sadface: Sorry, this user has been locked out.';
 
+invalidPasswordError = '[data-test="error"]';
+invalidPasswordErrorExpectedText = 'Epic sadface: Username and password do not match any user in this service';
 
 
 assertLoginPageLogo(){
@@ -52,6 +54,12 @@ cy.get(this.lockedOutUserError).should('include.html', '<button class="error-but
 
 }
 
+assertInvalidPasswordUserLoginError(){
 
+    cy.get(this.invalidPasswordError).should('be.visible');
+    cy.get(this.invalidPasswordError).should('have.text', this.invalidPasswordErrorExpectedText);
+    cy.get(this.invalidPasswordError).should('include.html', '<button class="error-button">');
+    
+    }
 
 }

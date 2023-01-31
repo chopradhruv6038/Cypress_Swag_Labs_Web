@@ -5,7 +5,8 @@
 "lockedOutUserName" : "locked_out_user",
 "problemUserName" : "problem_user",
 "PerformanceGlitchUserName" : "performance_glitch_user",
-"invalidPassword" : "invalid"
+"invalidPassword" : "invalid",
+"InvalidUserName" : "invalid"
 
 
 }

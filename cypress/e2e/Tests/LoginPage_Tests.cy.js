@@ -2,6 +2,7 @@
 
 import { LoginPage } from "../pom/Login_Page";
 import { BasePage } from "../pom/Base_Page";
+import { ProductsPage } from "../pom/Products_Page";
 
 
 
@@ -9,6 +10,7 @@ import { BasePage } from "../pom/Base_Page";
 
 const basepage = new BasePage();
 const loginpage = new LoginPage();
+const productspage = new ProductsPage();
 
 
 
@@ -35,7 +37,7 @@ cy.readFile('cypress/fixtures/LoginUsersData.json').then((res)=> {
 
 })
 
-it.only('Login Test for locked out user', ()=> {
+it('Login Test for locked out user', ()=> {
 
   loginpage.assertLoginPageLogo();
 
@@ -59,6 +61,8 @@ it('Login Test for invalid Password', ()=> {
   
   loginpage.clickLoginBtn();
 
+  loginpage.assertInvalidPasswordUserLoginError();
+
 
 
 
@@ -76,7 +80,7 @@ it('Login Test for problem user', ()=> {
   
   loginpage.clickLoginBtn();
 
-
+// assertion for home page left
 
 
   
@@ -94,23 +98,43 @@ it('Login Test for performance glitch user', ()=> {
   
   loginpage.clickLoginBtn();
 
-
+//assertion left for performance glitch.
 
   
 })
 
 
-it('Login Test for valid user', ()=> {
+it.only('Login Test for valid username and password', ()=> {
 
 
   loginpage.assertLoginPageLogo();
 
   loginpage.enterUserName(userLoginDetails.validUserName);
   loginpage.enterPassword(userLoginDetails.validPassword);
+
+  loginpage.clickLoginBtn();
+
+  productspage.assertSwagLabsLogoOnProductsPage();
+
+
+
+
+
+
   
- 
+})
+
+it('Login Test for Invalid userName', ()=> {
 
 
+  loginpage.assertLoginPageLogo();
+
+  loginpage.enterUserName(userLoginDetails.InvalidUserName);
+  loginpage.enterPassword(userLoginDetails.validPassword);
+  
+  loginpage.clickLoginBtn();
+
+  loginpage.assertInvalidPasswordUserLoginError();
 
 
   
