@@ -6,7 +6,7 @@ url = 'https://www.saucedemo.com/';
 
 elements = {
 
-url: ()=> cy.visit('https://www.saucedemo.com/'),    
+ //url: ()=> cy.visit('https://www.saucedemo.com/'),    
 
 burgerMenu: ()=> cy.get('#react-burger-menu-btn'),
 
@@ -20,9 +20,9 @@ swagLabsLogo: ()=>  cy.get('.login_logo')
 
 loadUrl(endpoint){
 
-this.elements.url() + endpoint;
+//this.elements.url() + endpoint;
 
-    //cy.visit(this.url + endpoint);
+cy.visit(this.url + endpoint);
     
     }
 

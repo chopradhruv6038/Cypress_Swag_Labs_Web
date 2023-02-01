@@ -19,15 +19,17 @@ beforeEach('Before Each block for URL', ()=> {
 
     basepage.loadUrl('');
 
+    basepage.setViewPortTo1280X720();
+
 })
 
-afterEach('After each block for logging out post each test', ()=> {
+/* afterEach('After each block for logging out post each test', ()=> {
 
 basepage.performLogoutFrmProdPage();
 basepage.assertSwagLabsLogoOnLoginPage();
 
 
-})
+}) */
 
 before('Before block for Reading json files places under fixtures', ()=> {
 

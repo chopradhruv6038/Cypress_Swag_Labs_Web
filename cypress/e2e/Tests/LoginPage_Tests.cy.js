@@ -26,8 +26,27 @@ before('Before block for loading the json and storing in a variable', ()=> {
 
 beforeEach('Before Each block for loading URL and setting Viewport', ()=> {
 
-basepage.loadUrl('');
-basepage.setViewPortTo1280X720();
+  basepage.loadUrl('');
+
+  basepage.setViewPortTo1280X720();
+
+
+})
+
+
+it('Login Test for valid userName and password, also asserting user on products page', ()=> {
+
+
+  loginpage.assertLoginPageLogo();
+
+  loginpage.enterUserName(userLoginDetails.validUserName);
+  loginpage.enterPassword(userLoginDetails.validPassword);
+  loginpage.clickLoginBtn();
+  
+  productspage.assertSwagLabsLogoOnProductsPage();
+
+
+
 
 })
 
@@ -44,6 +63,8 @@ loginpage.assertInvalidPasswordUserLoginError();
 
 })
 
+
+
 it('Login Test for invalid Password', ()=> {
 
 loginpage.assertLoginPageLogo();
@@ -55,6 +76,7 @@ loginpage.clickLoginBtn();
 loginpage.assertInvalidPasswordUserLoginError();
 
 })
+
 
 it('Login Test for locked out user', ()=> {
 
@@ -69,16 +91,9 @@ it('Login Test for locked out user', ()=> {
   })
 
 
-it('Login Test for valid username and password', ()=> {
 
-loginpage.assertLoginPageLogo();
 
-loginpage.enterUserName(userLoginDetails.validUserName);
-loginpage.enterPassword(userLoginDetails.validPassword);
-loginpage.clickLoginBtn();
-
-productspage.assertSwagLabsLogoOnProductsPage();
+  
 
 })
 
-})
