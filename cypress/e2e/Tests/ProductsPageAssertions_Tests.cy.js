@@ -12,6 +12,7 @@ const basepage = new BasePage();
 describe('This suite will assert all products and its details on the products page', ()=> {
 
     let userData;
+    let productsPageData;
 
 beforeEach('Before Each block for URL', ()=> {
 
@@ -27,6 +28,13 @@ cy.readFile('cypress/fixtures/LoginUsersData.json').then((res)=> {
 
 })
 
+
+cy.readFile('cypress/fixtures/ProductsPage.json').then((res)=> {
+
+    productsPageData = res;
+
+})
+
 })
 
 it('products page ALL elements / products assertions after user lands on products page', ()=> {
@@ -35,12 +43,23 @@ it('products page ALL elements / products assertions after user lands on product
 
 loginpage.enterUserName(userData.validUserName)
 loginpage.enterPassword(userData.validPassword);
-loginpage.clickLoginBtn();
+loginpage.clickLoginBtn(); // These three commands could also be handles using custom user commands and placed in before each block.
 
 
 productspage.assertSwagLabsLogoOnProductsPage();
 productspage.assertMenuIconOnProductsPage();
 productspage.assertShoppingCartOnProductsPage();
+productspage.assertProductPageTitle(productsPageData.Data.expectedProductPageTitleText);
+productspage.assertProductPagePeekIcon();
+productspage.assertSortingContainerOnProductsPage();
+
+productspage.assertSauceLabsBackPackDetails(productsPageData.Data.expectedSauceLabsBackPackDetails)
+productspage.assertSauceLabsBackPackImg();
+
+productspage.assertTwitterIconOnProductsPageFtr();
+productspage.assertFacebookIconOnProductsPageFtr();
+productspage.assertLinkedinIconOnProductsPageFtr();
+productspage.assertFTRTextOnProductsPage(productsPageData.Data.expectedProductsPageFooterTxt)
 
 
 
