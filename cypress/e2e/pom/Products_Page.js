@@ -1,44 +1,43 @@
- export class ProductsPage{
+export class ProductsPage{
 
-    //UI definitions
+//UI definitions
 
- elements = { // element object
+elements = { // element object
 
-    productsPageSwaglabsHeader: ()=> cy.get('.app_logo'), //web element is assigned a value of a function which will be used in user action functions
+productsPageSwaglabsHeader: ()=> cy.get('.app_logo'), //web element is assigned a value of a function which will be used in user action functions
 
-    productsPageMenuIcon: ()=> cy.get('.bm-burger-button'),
+productsPageMenuIcon: ()=> cy.get('.bm-burger-button'),
 
-    productsPageCartIcon: ()=> cy.get('#shopping_cart_container'),
+productsPageCartIcon: ()=> cy.get('#shopping_cart_container'),
 
-    productsPageTitle: ()=> cy.get('.title'),
+productsPageTitle: ()=> cy.get('.title'),
 
-    productsPagePeekIcon: ()=> cy.get('.peek'),
+productsPagePeekIcon: ()=> cy.get('.peek'),
 
-    productsPageSortingContainer: ()=> cy.get('[data-test="product_sort_container"]'),
+productsPageSortingContainer: ()=> cy.get('[data-test="product_sort_container"]'),
 
-    productsPageProductSauceLabsBackPackDetails: ()=> cy.get(':nth-child(1) > .inventory_item_description'),
-    
-    productsPageProductSauceLabsBackPackImg: ()=> cy.get('#item_4_img_link'),
+productsPageProductSauceLabsBackPackDetails: ()=> cy.get(':nth-child(1) > .inventory_item_description'),
 
-    //all items left to assert. just done one for sample.
- 
+productsPageProductSauceLabsBackPackImg: ()=> cy.get('#item_4_img_link'),
 
-    productsPageTwitterIcon: ()=> cy.get('.social_twitter'),
+//all items left to assert. just done one for sample.
 
-    productsPageFacebookIcon: ()=> cy.get('.social_facebook'),
+productsPageTwitterIcon: ()=> cy.get('.social_twitter'),
 
-    productsPageLinkedInIcon: ()=> cy.get('.social_linkedin'),
+productsPageFacebookIcon: ()=> cy.get('.social_facebook'),
 
-    productsPageFtrText: ()=> cy.get('.footer_copy'),
+productsPageLinkedInIcon: ()=> cy.get('.social_linkedin'),
 
-    productsPageFtrRobotImg: ()=> cy.xpath("//img[@class ='footer_robot']"), //using xpath for demonstration, requires xpath dependency.
+productsPageFtrText: ()=> cy.get('.footer_copy'),
 
+productsPageFtrRobotImg: ()=> cy.xpath("//img[@class ='footer_robot']"), //using xpath for demonstration, requires xpath dependency.
 
 
-    
+
+
 }
 
-//Functions for user actions
+//Assertion Functions
 
 assertSwagLabsLogoOnProductsPage(){
 
@@ -106,31 +105,38 @@ this.elements.productsPageTwitterIcon()
 
 assertFacebookIconOnProductsPageFtr(){
 
-    this.elements.productsPageFacebookIcon()
-    
-    .find('a').should('have.attr', 'href', 'https://www.facebook.com/saucelabs').should('be.visible')
-    
-    }
+this.elements.productsPageFacebookIcon()
 
-    assertLinkedinIconOnProductsPageFtr(){
+.find('a').should('have.attr', 'href', 'https://www.facebook.com/saucelabs').should('be.visible')
 
-        this.elements.productsPageLinkedInIcon()
-        
-        .find('a').should('have.attr', 'href', 'https://www.linkedin.com/company/sauce-labs/').should('be.visible')
-        
-        }
+}
+
+assertLinkedinIconOnProductsPageFtr(){
+
+this.elements.productsPageLinkedInIcon()
+
+.find('a').should('have.attr', 'href', 'https://www.linkedin.com/company/sauce-labs/').should('be.visible')
+
+}
 
 
-        assertFTRTextOnProductsPage(expectedText){
+assertFTRTextOnProductsPage(expectedText){
 
-       this.elements.productsPageFtrText().should('have.text', expectedText)
+this.elements.productsPageFtrText().should('have.text', expectedText)
 
-        }
+}
 
-        assertFtrRobotImg(){
+assertFtrRobotImg(){
 
-            this.elements.productsPageFtrRobotImg().should('have.attr', 'src', '/static/media/SwagBot_Footer_graphic.2e87acec.png').should('be.visible')
+this.elements.productsPageFtrRobotImg().should('have.attr', 'src', '/static/media/SwagBot_Footer_graphic.2e87acec.png').should('be.visible')
 
-        }
+}
+
+
+// Sorting functions
+
+
+
+
 
 }
