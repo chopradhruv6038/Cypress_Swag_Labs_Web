@@ -31,6 +31,8 @@
 
     productsPageFtrText: ()=> cy.get('.footer_copy'),
 
+
+
     
 
 
