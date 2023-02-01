@@ -21,7 +21,7 @@ jobs:
         uses: cypress-io/github-action@v5.0.5
         
         with:
-          browser: firefox
+          browser: chrome
           record: true
           parallel: true
   
