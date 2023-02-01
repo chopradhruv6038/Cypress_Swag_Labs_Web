@@ -1,10 +1,10 @@
-
-
  export class ProductsPage{
 
- elements = {
+    //UI definitions
 
-    productsPageSwaglabsHeader: ()=> cy.get('.app_logo'),
+ elements = { // element object
+
+    productsPageSwaglabsHeader: ()=> cy.get('.app_logo'), //web element is assigned a value of a function which will be used in user action functions
 
     productsPageMenuIcon: ()=> cy.get('.bm-burger-button'),
 
@@ -31,74 +31,14 @@
 
     productsPageFtrText: ()=> cy.get('.footer_copy'),
 
+    productsPageFtrRobotImg: ()=> cy.xpath("//img[@class ='footer_robot']"), //using xpath for demonstration, requires xpath dependency.
+
 
 
     
-
-
-
-
 }
 
-
-
-
-
-
-
-// UI definitions:
-
-
-
-// productsPageProductsHeader = 
-
-// productsPageCartoonOnHeader = 
-
-// productsPageSortingField = 
-
-
-// productsPageProductSauceLabsBackPackDetails =
-
-// productsPageProductSauceLabsBackPackImg
-
-
-
-
-// ProductsPageProductSauceLabsBikeLightDetails =
-
-// productspageProductSauceLabsBikeLightImg
-
-
-
-
-// productsPageProductSauceLabsBoltTShirtDetails =
-
-// productsPageProductSauceLabsBoltTShirtImg
-
-
-
-
-// productsPageProductSauceLabsFleeceJacketDetails =
-
-// productsPageProductSauceLabsFleeceJacketImg =
-
-
-
-
-// productsPageProductSauceLabsOneSieDetails =
-
-// productsPageProductSauceLabsOneSieImg =
-
-
-
-
-
-// productsPageProductSauceLabsTestAllThingsDetails =
-
-// productsPageProductSauceLabsTestAllThingsImg =,
-
-
-//methods for user actions
+//Functions for user actions
 
 assertSwagLabsLogoOnProductsPage(){
 
@@ -184,6 +124,12 @@ assertFacebookIconOnProductsPageFtr(){
         assertFTRTextOnProductsPage(expectedText){
 
        this.elements.productsPageFtrText().should('have.text', expectedText)
+
+        }
+
+        assertFtrRobotImg(){
+
+            this.elements.productsPageFtrRobotImg().should('have.attr', 'src', '/static/media/SwagBot_Footer_graphic.2e87acec.png').should('be.visible')
 
         }
 

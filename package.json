@@ -5,8 +5,12 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dashboard": "npx cypress run -b firefox --headed --record --key 33445e7d-b031-4206-96e5-ecf5f4c6b96d"
-  },
+    "dashboard": "npx cypress run -b firefox --headed --record --key 33445e7d-b031-4206-96e5-ecf5f4c6b96d",
+    "cypress:run_all_chrome_headed" : "npx cypress run -b chrome --headed --record --key 33445e7d-b031-4206-96e5-ecf5f4c6b96d",
+    "cypress:run_all_firefox_headed" : "npx cypress run -b firefox --headed --record --key 33445e7d-b031-4206-96e5-ecf5f4c6b96d",
+    "cypress:run_loginTests_chrome_headed" : "npx cypress run -s cypress/e2e/Tests/LoginPage_Tests.cy.js -b firefox --headed --record --key 33445e7d-b031-4206-96e5-ecf5f4c6b96d",
+    "cypress:run_ProductPageAssertionsTests_firefox_headed": "npx cypress run -s cypress/e2e/Tests/ProductsPageAssertions_Tests.cy.js -b firefox --headed --record --key 33445e7d-b031-4206-96e5-ecf5f4c6b96d"
+    },
   "keywords": [],
   "author": "",
   "license": "ISC",

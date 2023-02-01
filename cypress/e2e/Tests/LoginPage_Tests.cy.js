@@ -5,18 +5,14 @@ import { BasePage } from "../pom/Base_Page";
 import { ProductsPage } from "../pom/Products_Page";
 
 
-
-//creating objects for the classes
-
 const basepage = new BasePage();
 const loginpage = new LoginPage();
 const productspage = new ProductsPage();
 
 
-
 describe('This suite will test all the Login Test cases', ()=> {
 
-  let userLoginDetails;
+let userLoginDetails;
 
 beforeEach('Before Each block for loading URL and setting Viewport', ()=> {
 
@@ -30,116 +26,61 @@ before('Before block for loading the json and storing in a variable', ()=> {
 
 cy.readFile('cypress/fixtures/LoginUsersData.json').then((res)=> {
 
-  userLoginDetails = res;
+userLoginDetails = res;
 
 })
 
-
 })
 
-it('Login Test for locked out user', ()=> {
+it('Login Test for Invalid userName', ()=> {
 
-  loginpage.assertLoginPageLogo();
+loginpage.assertLoginPageLogo();
 
-  loginpage.enterUserName(userLoginDetails.lockedOutUserName);
-  loginpage.enterPassword(userLoginDetails.validPassword);
-  
-  loginpage.clickLoginBtn();
-  
-  loginpage.assertLockedOutUserLoginError();
+loginpage.enterUserName(userLoginDetails.InvalidUserName);
+loginpage.enterPassword(userLoginDetails.validPassword);
+
+loginpage.clickLoginBtn();
+
+loginpage.assertInvalidPasswordUserLoginError();
 
 })
 
 
 it('Login Test for invalid Password', ()=> {
 
+loginpage.assertLoginPageLogo();
 
-  loginpage.assertLoginPageLogo();
+loginpage.enterUserName(userLoginDetails.validUserName);
+loginpage.enterPassword(userLoginDetails.invalidPassword);
 
-  loginpage.enterUserName(userLoginDetails.validUserName);
-  loginpage.enterPassword(userLoginDetails.invalidPassword);
-  
-  loginpage.clickLoginBtn();
+loginpage.clickLoginBtn();
+loginpage.assertInvalidPasswordUserLoginError();
 
-  loginpage.assertInvalidPasswordUserLoginError();
-
-
-
-
-  
 })
 
-
-it('Login Test for problem user', ()=> {
-
+it('Login Test for locked out user', ()=> {
 
   loginpage.assertLoginPageLogo();
-
-  loginpage.enterUserName(userLoginDetails.problemUserName);
+  
+  loginpage.enterUserName(userLoginDetails.lockedOutUserName);
   loginpage.enterPassword(userLoginDetails.validPassword);
   
   loginpage.clickLoginBtn();
-
-// assertion for home page left
-
-
+  loginpage.assertLockedOutUserLoginError();
   
+  })
+
+
+it('Login Test for valid username and password', ()=> {
+
+loginpage.assertLoginPageLogo();
+
+loginpage.enterUserName(userLoginDetails.validUserName);
+loginpage.enterPassword(userLoginDetails.validPassword);
+loginpage.clickLoginBtn();
+
+productspage.assertSwagLabsLogoOnProductsPage();
+
 })
-
-
-it('Login Test for performance glitch user', ()=> {
-
-
-
-  loginpage.assertLoginPageLogo();
-
-  loginpage.enterUserName(userLoginDetails.PerformanceGlitchUserName);
-  loginpage.enterPassword(userLoginDetails.validPassword);
-  
-  loginpage.clickLoginBtn();
-
-//assertion left for performance glitch.
-
-  
-})
-
-
-it.only('Login Test for valid username and password', ()=> {
-
-
-  loginpage.assertLoginPageLogo();
-
-  loginpage.enterUserName(userLoginDetails.validUserName);
-  loginpage.enterPassword(userLoginDetails.validPassword);
-
-  loginpage.clickLoginBtn();
-
-  productspage.assertSwagLabsLogoOnProductsPage();
-
-
-
-
-
-
-  
-})
-
-it('Login Test for Invalid userName', ()=> {
-
-
-  loginpage.assertLoginPageLogo();
-
-  loginpage.enterUserName(userLoginDetails.InvalidUserName);
-  loginpage.enterPassword(userLoginDetails.validPassword);
-  
-  loginpage.clickLoginBtn();
-
-  loginpage.assertInvalidPasswordUserLoginError();
-
-
-  
-})
-
-
 
 })

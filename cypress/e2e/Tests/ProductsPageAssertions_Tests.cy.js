@@ -2,6 +2,7 @@
 import { ProductsPage } from "../pom/Products_Page";
 import { LoginPage } from "../pom/Login_Page";
 import { BasePage } from "../pom/Base_Page";
+import { afterEach } from "mocha";
 
 const productspage = new ProductsPage();
 const loginpage = new LoginPage();
@@ -20,7 +21,15 @@ beforeEach('Before Each block for URL', ()=> {
 
 })
 
-before('', ()=> {
+afterEach('After each block for logging out post each test', ()=> {
+
+basepage.performLogoutFrmProdPage();
+basepage.assertSwagLabsLogoOnLoginPage();
+
+
+})
+
+before('Before block for Reading json files places under fixtures', ()=> {
 
 cy.readFile('cypress/fixtures/LoginUsersData.json').then((res)=> {
 
@@ -41,11 +50,11 @@ it('products page ALL elements / products assertions after user lands on product
 
 
 
-loginpage.enterUserName(userData.validUserName)
+loginpage.enterUserName(userData.validUserName);
 loginpage.enterPassword(userData.validPassword);
 loginpage.clickLoginBtn(); // These three commands could also be handles using custom user commands and placed in before each block.
 
-
+//Asserting products page header.
 productspage.assertSwagLabsLogoOnProductsPage();
 productspage.assertMenuIconOnProductsPage();
 productspage.assertShoppingCartOnProductsPage();
@@ -53,31 +62,18 @@ productspage.assertProductPageTitle(productsPageData.Data.expectedProductPageTit
 productspage.assertProductPagePeekIcon();
 productspage.assertSortingContainerOnProductsPage();
 
+//Asserting products page first product all details.
 productspage.assertSauceLabsBackPackDetails(productsPageData.Data.expectedSauceLabsBackPackDetails)
 productspage.assertSauceLabsBackPackImg();
 
+//Asserting products page footer and its details.
 productspage.assertTwitterIconOnProductsPageFtr();
 productspage.assertFacebookIconOnProductsPageFtr();
 productspage.assertLinkedinIconOnProductsPageFtr();
 productspage.assertFTRTextOnProductsPage(productsPageData.Data.expectedProductsPageFooterTxt)
-
-
-
-
-
-
-
-
-
+productspage.assertFtrRobotImg();
 
 })
-
-
-
-
-
-
-
 
 
 

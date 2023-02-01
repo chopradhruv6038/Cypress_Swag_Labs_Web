@@ -21,28 +21,21 @@ cy.get(this.loginPageLogo).should('have.class', 'login_logo');
 
 enterUserName(userName){
 
-
 cy.get(this.userNameField).type(userName);
-
 
 }
 
 
 enterPassword(password){
 
+cy.get(this.passwordField).type(password);
 
-    cy.get(this.passwordField).type(password);
-    
-    
-    }
+}
 
 
 clickLoginBtn(){
 
-
 cy.get(this.loginBtn).click();
-
-
 
 }
 
@@ -56,10 +49,10 @@ cy.get(this.lockedOutUserError).should('include.html', '<button class="error-but
 
 assertInvalidPasswordUserLoginError(){
 
-    cy.get(this.invalidPasswordError).should('be.visible');
-    cy.get(this.invalidPasswordError).should('have.text', this.invalidPasswordErrorExpectedText);
-    cy.get(this.invalidPasswordError).should('include.html', '<button class="error-button">');
-    
-    }
+cy.get(this.invalidPasswordError).should('be.visible');
+cy.get(this.invalidPasswordError).should('have.text', this.invalidPasswordErrorExpectedText);
+cy.get(this.invalidPasswordError).should('include.html', '<button class="error-button">');
+
+}
 
 }
