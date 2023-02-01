@@ -14,21 +14,20 @@ describe('This suite will test all the Login Test cases', ()=> {
 
 let userLoginDetails;
 
+before('Before block for loading the json and storing in a variable', ()=> {
+
+  cy.readFile('cypress/fixtures/LoginUsersData.json').then((res)=> {
+  
+  userLoginDetails = res;
+  
+  })
+  
+  })
+
 beforeEach('Before Each block for loading URL and setting Viewport', ()=> {
 
 basepage.loadUrl('');
 basepage.setViewPortTo1280X720();
-
-
-})
-
-before('Before block for loading the json and storing in a variable', ()=> {
-
-cy.readFile('cypress/fixtures/LoginUsersData.json').then((res)=> {
-
-userLoginDetails = res;
-
-})
 
 })
 
@@ -44,7 +43,6 @@ loginpage.clickLoginBtn();
 loginpage.assertInvalidPasswordUserLoginError();
 
 })
-
 
 it('Login Test for invalid Password', ()=> {
 

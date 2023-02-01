@@ -4,6 +4,7 @@ module.exports = defineConfig({
   reporter: 'cypress-mochawesome-reporter',
   projectId: 'vwubsx',
   watchForFileChanges: false,
+  defaultCommandTimeout: 10000,
   e2e: {
     setupNodeEvents(on, config) {
       require('cypress-mochawesome-reporter/plugin')(on);
