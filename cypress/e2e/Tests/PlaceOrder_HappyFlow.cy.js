@@ -30,70 +30,33 @@ beforeEach('Before Each block for loading URL and setting Viewport', ()=> {
 
   basepage.setViewPortTo1280X720();
 
-
-})
-
-
-it.only('Login Test for valid userName and password, also asserting user on products page', ()=> {
-
-
   loginpage.assertLoginPageLogo();
-
   loginpage.enterUserName(userLoginDetails.validUserName);
   loginpage.enterPassword(userLoginDetails.validPassword);
   loginpage.clickLoginBtn();
-  
   productspage.assertSwagLabsLogoOnProductsPage();
 
+})
+
+
+it.only('Add To Cart Tests for two products, asserting remove Btn and placing plaing order', ()=> {
+
+  productspage.addSauceLabsBackPackToCart();
+  productspage.assertRemoveBtnSauceLabsBaclPack();
+
+  productspage.addSauceLabsBikeLightToCart();
+  productspage.assertRemoveBtnBikeLight();
+
+  productspage.assertShoppingCartBadgeForTwoProducts();
+  productspage.clickShoppingCartIcon();
+  
+
 
 
 
 })
 
-it('Login Test for Invalid userName', ()=> {
 
-loginpage.assertLoginPageLogo();
 
-loginpage.enterUserName(userLoginDetails.InvalidUserName);
-loginpage.enterPassword(userLoginDetails.validPassword);
-
-loginpage.clickLoginBtn();
-
-loginpage.assertInvalidPasswordUserLoginError();
 
 })
-
-
-
-it('Login Test for invalid Password', ()=> {
-
-loginpage.assertLoginPageLogo();
-
-loginpage.enterUserName(userLoginDetails.validUserName);
-loginpage.enterPassword(userLoginDetails.invalidPassword);
-
-loginpage.clickLoginBtn();
-loginpage.assertInvalidPasswordUserLoginError();
-
-})
-
-
-it('Login Test for locked out user', ()=> {
-
-  loginpage.assertLoginPageLogo();
-  
-  loginpage.enterUserName(userLoginDetails.lockedOutUserName);
-  loginpage.enterPassword(userLoginDetails.validPassword);
-  
-  loginpage.clickLoginBtn();
-  loginpage.assertLockedOutUserLoginError();
-  
-  })
-
-
-
-
-  
-
-})
-

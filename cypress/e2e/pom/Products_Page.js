@@ -32,10 +32,30 @@ productsPageFtrText: ()=> cy.get('.footer_copy'),
 
 productsPageFtrRobotImg: ()=> cy.xpath("//img[@class ='footer_robot']"), //using xpath for demonstration, requires xpath dependency.
 
+//Add to cart Btn UI definitions
 
+sauceLabsBackPackAddToCartBtn: ()=> cy.xpath("//button[@id='add-to-cart-sauce-labs-backpack']"),
 
+sauceLabsBikeLightAddToCartBtn: ()=> cy.xpath("//button[@id='add-to-cart-sauce-labs-bike-light']"),
+
+//remove btn ui definitions after adding product to cart.
+
+sauceLabsBackPackRemoveBtn: ()=> cy.xpath("//button[@id='remove-sauce-labs-backpack']"),
+
+sauceLabsBikeLightRemoveBtn: ()=> cy.xpath("//button[@id='remove-sauce-labs-bike-light']"),
+
+//cart badge number, which displays the number of products in the cart.
+
+shoppingCartBadge: ()=> cy.xpath("//span[@class='shopping_cart_badge']"),
+
+//shopping cart icon UI def
+
+shoppingCartIcon: ()=> cy.get('.shopping_cart_link'),
 
 }
+
+
+
 
 //Assertion Functions
 
@@ -133,10 +153,53 @@ this.elements.productsPageFtrRobotImg().should('have.attr', 'src', '/static/medi
 }
 
 
-// Sorting functions
+// Add to cart functions
+
+addSauceLabsBackPackToCart(){
+
+    this.elements.sauceLabsBackPackAddToCartBtn().click();
 
 
+}
 
+addSauceLabsBikeLightToCart(){
+
+this.elements.sauceLabsBikeLightAddToCartBtn().click();
+
+}
+
+
+//Asserting remove btn after adding product to cart
+
+assertRemoveBtnSauceLabsBaclPack(){
+
+this.elements.sauceLabsBackPackRemoveBtn().should('have.text', 'Remove')
+.and('be.visible');
+
+}
+
+assertRemoveBtnBikeLight(){
+
+this.elements.sauceLabsBikeLightRemoveBtn().should('have.text', 'Remove')
+.and('be.visible');
+
+}
+
+//Shopiing cart badge functions
+
+assertShoppingCartBadgeForTwoProducts(){
+
+this.elements.shoppingCartBadge().should('have.text', 2);
+
+
+}
+
+//shopping cart icon click function
+
+clickShoppingCartIcon(){
+
+    this.elements.shoppingCartIcon().click();
+}
 
 
 }
