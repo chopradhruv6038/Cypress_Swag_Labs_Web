@@ -48,7 +48,7 @@ cy.readFile('cypress/fixtures/ProductsPage.json').then((res)=> {
 
 })
 
-it('products page ALL elements / products assertions after user lands on products page', ()=> {
+it.only('products page ALL elements / products assertions after user lands on products page', ()=> {
 
 
 
