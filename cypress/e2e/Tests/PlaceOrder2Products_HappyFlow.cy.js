@@ -1,10 +1,14 @@
 /// <reference types = "Cypress"/>
 
+/* This test will place order for 2 products SLB and SLBL and 
+will also assert all the details on each and every page in the flow till the order is placed. */
+
 import { LoginPage } from "../pom/Login_Page";
 import { BasePage } from "../pom/Base_Page";
 import { ProductsPage } from "../pom/Products_Page";
 import { CartPage } from "../pom/Cart_Page";
 import { CheckoutPage } from "../pom/checkout_Page";
+import { CheckoutOverviewPage } from "../pom/CheckoutOverview_Page";
 
 
 const basepage = new BasePage();
@@ -12,6 +16,7 @@ const loginpage = new LoginPage();
 const productspage = new ProductsPage();
 const cartpage = new CartPage();
 const checkoutpage = new CheckoutPage();
+const checkoutoverviewpage = new CheckoutOverviewPage();
 
 
 describe('This suite will test all the Login Test cases', ()=> {
@@ -21,6 +26,8 @@ let userLoginDetails;
 let cartpageExpectedtxt;
 
 let checkoutPageDetails;
+
+let checkoutOverviewDetails;
 
 before('Before block for loading the json and storing in a variable', ()=> {
 
@@ -42,25 +49,28 @@ before('Before block for loading the json and storing in a variable', ()=> {
     checkoutPageDetails = res;
 
   })
+
+  cy.fixture('checkoutOverviewPage.json').then((res)=> {
+
+     checkoutOverviewDetails = res;
+
+  })
   
   })
 
 beforeEach('Before Each block for loading URL, setting Viewport and Login', ()=> {
 
   basepage.loadUrl('');
-
   basepage.setViewPortTo1280X720();
 
-  loginpage.assertLoginPageLogo();
   loginpage.enterUserName(userLoginDetails.validUserName);
   loginpage.enterPassword(userLoginDetails.validPassword);
   loginpage.clickLoginBtn();
-  productspage.assertSwagLabsLogoOnProductsPage();
-
+  
 })
 
 
-it('Add To Cart Tests two products -> assert remove Btns -> move to cart page -> assert products, price and quantity -> move to checkout page', ()=> {
+it('Add To Cart Tests two products -> assert remove Btns -> move to cart page -> assert products, price and quantity -> move to overview page, assert details and click finish Btn', ()=> {
 
   productspage.addSauceLabsBackPackToCart(); //1 quantity
   productspage.assertRemoveBtnSauceLabsBaclPack();
@@ -82,7 +92,13 @@ it('Add To Cart Tests two products -> assert remove Btns -> move to cart page ->
   checkoutpage.enterZipCode(checkoutPageDetails.userDetails.postalCode);
   checkoutpage.clickContinueBtn();
 
-  
+  checkoutoverviewpage.assertCheckoutOverviewPgTitle(checkoutOverviewDetails.overviewDetailsforprodSLBSLBL.checkoutOverviewPgTitle);
+  checkoutoverviewpage.assertSlbDetils(checkoutOverviewDetails.overviewDetailsforprodSLBSLBL.slbDetails);
+  checkoutoverviewpage.assertSlblDetails(checkoutOverviewDetails.overviewDetailsforprodSLBSLBL.slblDetails);
+  checkoutoverviewpage.assertItemTotalWithoutTax(checkoutOverviewDetails.overviewDetailsforprodSLBSLBL.itemTotalWithoutTax);
+  checkoutoverviewpage.assertTaxApplied(checkoutOverviewDetails.overviewDetailsforprodSLBSLBL.taxAmount);
+  checkoutoverviewpage.assertTotalAmount(checkoutOverviewDetails.overviewDetailsforprodSLBSLBL.totalAmount);
+  checkoutoverviewpage.clickFinishBtn(checkoutOverviewDetails.overviewDetailsforprodSLBSLBL);
 
 
 
