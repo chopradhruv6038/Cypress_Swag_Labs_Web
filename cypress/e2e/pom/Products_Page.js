@@ -52,6 +52,10 @@ shoppingCartBadge: ()=> cy.xpath("//span[@class='shopping_cart_badge']"),
 
 shoppingCartIcon: ()=> cy.get('.shopping_cart_link'),
 
+menuBurgerIcon: ()=> cy.xpath("//button[@id='react-burger-menu-btn']"),
+
+logoutLnk: ()=> cy.xpath("//a[@id='logout_sidebar_link']"),
+
 }
 
 
@@ -201,5 +205,18 @@ clickShoppingCartIcon(){
     this.elements.shoppingCartIcon().click();
 }
 
+
+clickBurgerMenu(){
+
+
+this.elements.menuBurgerIcon().click();
+
+}
+
+clickLogoutLnk(){
+
+this.elements.logoutLnk().click();
+
+}
 
 }

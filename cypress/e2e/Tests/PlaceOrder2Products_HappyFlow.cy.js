@@ -21,7 +21,7 @@ const checkoutoverviewpage = new CheckoutOverviewPage();
 const checkoutcompletepage = new CheckoutCompletePage();
 
 
-describe('This suite will test all the Login Test cases', ()=> {
+describe('This suite will perform a full flow from login -> select product -> add to cart -> view cart -> checkout -> validate details', ()=> {
 
 let userLoginDetails;
 
